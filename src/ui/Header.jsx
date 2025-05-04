@@ -1,13 +1,8 @@
-function Header({ title }) {
-  const text = title.split(" ");
+function Header() {
   return (
-    <header className="header">
-      <h1>
-        <span>{text[0]}</span>
-        <br />
-        <span>{text[1]}</span>
-      </h1>
-    </header>
+    <figure className="p-10 mt-auto">
+      <img src="/images/logo.svg" alt="splitter app logo" width={"full"} />
+    </figure>
   );
 }
 

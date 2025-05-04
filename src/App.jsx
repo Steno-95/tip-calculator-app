@@ -1,20 +1,12 @@
 import AppLayout from "./ui/AppLayout";
-import Button from "./ui/Button";
-import DollarIcon from "./ui/DollarIcon";
 import Footer from "./ui/Footer";
 import Header from "./ui/Header";
-import Input from "./ui/Input";
 
 function App() {
   return (
-    <div className="flex flex-col items-center">
-      <Header title={"spli tter"} />
-      <AppLayout>
-        <Input id={"bill"} label={"Bill"}>
-          <DollarIcon />
-        </Input>
-        <Button />
-      </AppLayout>
+    <div className="flex flex-col items-center max-w-[20rem] min-h-screen mx-auto md:max-w-[44rem]">
+      <Header />
+      <AppLayout></AppLayout>
       <Footer />
     </div>
   );
