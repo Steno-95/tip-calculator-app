@@ -1,18 +1,29 @@
-function Input({ children, id, label }) {
+import Label from "./Label";
+
+function Input({ children, id, label, connect, setter, error, onError }) {
+  const displayError = !connect && error;
   return (
-    <form className="flex flex-col">
-      <label htmlFor={id} className="text-[1.1rem] text-(--sub-color)">
-        {label}
-      </label>
-      <div className="flex items-center justify-center py-1.5  focus:outline-2 focus:outline-(--primary)">
+    <fieldset className="flex flex-col">
+      <Label id={id} label={label} error={displayError} />
+      <div
+        className={`flex items-center justify-center   focus-within:outline-2 focus-within:outline-(--primary) my-1.5 ${
+          displayError && "outline-2 outline-red-300"
+        }`}
+      >
         {children}
         <input
           type="text"
           id={id}
-          className="bg-(--box-bg) text-(--main-bg) w-full outline-none flex-row-reverse text-right "
+          className={`input`}
+          placeholder="0"
+          value={connect}
+          onChange={(e) => {
+            onError(false);
+            setter(e.target.value);
+          }}
         />
       </div>
-    </form>
+    </fieldset>
   );
 }
 
