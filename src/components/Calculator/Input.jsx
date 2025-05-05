@@ -13,7 +13,7 @@ function Input({
 }) {
   const displayError = !connect && error;
   return (
-    <fieldset className="flex flex-col">
+    <fieldset className="flex flex-col lg:gap-3">
       <Label id={id} label={label} error={displayError} />
       <div
         className={`flex items-center justify-center   focus-within:outline-2 focus-within:outline-(--primary) my-1.5 ${

@@ -6,7 +6,7 @@ function Display({ handleReset, reset, tip, total, numPeople }) {
   return (
     <div
       className="bg-(--main-bg) px-5 py-7 flex flex-col gap-4
-rounded-xl"
+rounded-xl lg:gap-10 lg:pt-12 lg:px-8"
     >
       <DisplayRow text={"Tip Amount"} value={tip / numberPeople} />
       <DisplayRow text={"Total"} value={total} />

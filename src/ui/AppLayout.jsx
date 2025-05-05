@@ -41,9 +41,9 @@ function AppLayout() {
   }
 
   return (
-    <div className="box md:grid md:grid-cols-2 md:min-w-[45rem] mb-auto">
+    <main className="box md:grid md:grid-cols-2 md:min-w-[45rem] mb-auto lg:min-w-[55rem] min-h-[30rem]">
       <form
-        className="flex flex-col gap-5"
+        className="flex flex-col gap-5 lg:justify-evenly"
         onSubmit={(e) => {
           e.preventDefault();
           if (!bill || !tipTotal || !numberPeople) return setError(true);
@@ -93,7 +93,7 @@ function AppLayout() {
         tip={tipTotal}
         total={total}
       />
-    </div>
+    </main>
   );
 }
 

@@ -1,7 +1,7 @@
 function Label({ id, label, error }) {
   return (
     <div className="flex justify-between">
-      <label htmlFor={id} className="label">
+      <label htmlFor={id} className="label text-xl">
         {label}
       </label>
       {error && (
