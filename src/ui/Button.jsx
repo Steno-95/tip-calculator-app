@@ -1,16 +1,22 @@
-function Button({ content, active, setActive, setPercentage, onTip }) {
+function Button({ content, active, setActive, setPercentage, onTip, reset }) {
   const { text } = content;
 
   return (
     <li
       className={
-        "main focus-within:bg-(--primary) focus-within:text-(--main-bg) flex items-center justify-center" +
-        ` ${active === text && "bg-(--primary) text-(--main-bg)"}`
+        "main flex items-center justify-center hover:bg-(--body-bg)" +
+        ` ${active === text && "bg-(--primary) text-(--main-bg)"}` +
+        `${
+          reset
+            ? " focus-within:bg-(--body-bg) focus-within:text-(--main-bg)"
+            : ""
+        }`
       }
       onClick={() => {
-        setActive(text);
-        setPercentage("");
         onTip(text.slice(0, -1));
+        if (reset) return;
+        setPercentage("");
+        setActive(text);
       }}
     >
       <button

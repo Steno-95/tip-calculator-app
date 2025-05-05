@@ -11,26 +11,33 @@ import ButtonList from "../components/ButtonList";
 function AppLayout() {
   const [bill, setBill] = useState("");
   const [numberPeople, setNumberPeople] = useState("");
-  const [tip, setTip] = useState(0);
+  const [tipTotal, setTipTotal] = useState(0);
   const [error, setError] = useState(false);
   const [activePercentage, setActivePercentage] = useState("");
   const [percentage, setPercentage] = useState("");
 
-  const reset = !bill && !numberPeople;
-  const total = tip > 0 ? +bill / +numberPeople + tip : tip;
+  //conditional variable to disable the reset button
+  const reset = !bill && !numberPeople && !activePercentage;
+
+  const total =
+    bill > 0 && numberPeople > 0
+      ? +bill / +numberPeople +
+        calcTip(activePercentage.slice(0, -1), +bill) / +numberPeople
+      : +bill + tipTotal;
 
   function handleOnTip(percentage) {
-    if (!bill || !numberPeople) return setError(true);
-    const tip = calcTip(percentage, Number(bill));
-    setTip(tip);
+    if (!bill || !numberPeople) setError(true);
+    const totalTip = calcTip(percentage, Number(bill));
+    setTipTotal(totalTip);
   }
 
   function handleReset() {
     setBill("");
     setNumberPeople("");
     setError(false);
-    setTip(0);
+    setTipTotal(0);
     setPercentage("");
+    setActivePercentage("");
   }
 
   return (
@@ -39,7 +46,7 @@ function AppLayout() {
         className="flex flex-col gap-5"
         onSubmit={(e) => {
           e.preventDefault();
-          if (!bill || !tip || !numberPeople) return setError(true);
+          if (!bill || !tipTotal || !numberPeople) return setError(true);
         }}
       >
         <Input
@@ -47,8 +54,10 @@ function AppLayout() {
           label={"Bill"}
           connect={bill}
           setter={setBill}
+          onTip={(p) => calcTip(p, +bill)}
           error={error}
           onError={setError}
+          active={activePercentage}
         >
           <DollarIcon />
         </Input>
@@ -58,6 +67,9 @@ function AppLayout() {
           setPercentage={setPercentage}
           handleOnTip={handleOnTip}
           percentage={percentage}
+          bill={bill}
+          numberPeople={numberPeople}
+          onError={setError}
         />
         <fieldset>
           <Input
@@ -65,8 +77,10 @@ function AppLayout() {
             label={"Number of People"}
             connect={numberPeople}
             setter={setNumberPeople}
+            onTip={(p) => calcTip(p, +bill)}
             error={error}
             onError={setError}
+            active={activePercentage}
           >
             <PersonIcon />
           </Input>
@@ -75,7 +89,8 @@ function AppLayout() {
       <Display
         handleReset={handleReset}
         reset={reset}
-        tip={tip}
+        numPeople={numberPeople}
+        tip={tipTotal}
         total={total}
       />
     </div>

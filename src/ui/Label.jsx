@@ -1,13 +1,17 @@
-function Label({ id, label, displayError }) {
+function Label({ id, label, error }) {
   return (
     <div className="flex justify-between">
       <label htmlFor={id} className="label">
         {label}
       </label>
-      {displayError && (
-        <label htmlFor={id} className="label text-red-400 tracking-tighter">
+      {error && (
+        <span
+          htmlFor={id}
+          className="label text-red-400 tracking-tighter"
+          aria-live="polite"
+        >
           Can't be zero
-        </label>
+        </span>
       )}
     </div>
   );
