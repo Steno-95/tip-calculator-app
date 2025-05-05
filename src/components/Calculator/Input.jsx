@@ -1,6 +1,16 @@
 import Label from "./Label";
 
-function Input({ children, id, label, connect, setter, error, onError }) {
+function Input({
+  children,
+  id,
+  label,
+  connect,
+  setter,
+  error,
+  onError,
+  onTip,
+  active,
+}) {
   const displayError = !connect && error;
   return (
     <fieldset className="flex flex-col">
@@ -12,7 +22,7 @@ function Input({ children, id, label, connect, setter, error, onError }) {
       >
         {children}
         <input
-          type="text"
+          type="number"
           id={id}
           className={`input`}
           placeholder="0"
@@ -20,7 +30,9 @@ function Input({ children, id, label, connect, setter, error, onError }) {
           onChange={(e) => {
             onError(false);
             setter(e.target.value);
+            onTip(active.slice(0, -1));
           }}
+          min={0}
         />
       </div>
     </fieldset>
