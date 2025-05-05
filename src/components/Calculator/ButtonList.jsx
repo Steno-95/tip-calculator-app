@@ -1,6 +1,6 @@
-import { buttons } from "../../data/data.json";
-import Button from "../ui/Button";
-import CustomInput from "../components/CustomInput";
+import { buttons } from "../../../data/data.json";
+import Button from "./Button";
+import CustomInput from "./CustomInput";
 
 function ButtonList({
   activePercentage,

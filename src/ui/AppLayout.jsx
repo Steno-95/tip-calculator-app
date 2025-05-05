@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import DollarIcon from "./DollarIcon";
-import PersonIcon from "./PersonIcon";
+import DollarIcon from "../components/Calculator/DollarIcon";
+import PersonIcon from "../components/Calculator/PersonIcon";
 
-import Input from "./Input";
-import Display from "../components/Display";
+import Input from "../components/Calculator/Input";
+import Display from "../components/Display/Display";
 import calcTip from "../helpers/calcTip";
-import ButtonList from "../components/ButtonList";
+import ButtonList from "../components/Calculator/ButtonList";
 
 function AppLayout() {
   const [bill, setBill] = useState("");
