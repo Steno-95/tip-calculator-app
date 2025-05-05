@@ -37,7 +37,10 @@ function AppLayout() {
     <div className="box md:grid md:grid-cols-2 md:min-w-[45rem] mb-auto">
       <form
         className="flex flex-col gap-5"
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!bill || !tip || !numberPeople) return setError(true);
+        }}
       >
         <Input
           id={"bill"}

@@ -13,7 +13,10 @@ function Button({ content, active, setActive, setPercentage, onTip }) {
         onTip(text.slice(0, -1));
       }}
     >
-      <button className="capitalize cursor-pointer outline-none w-full h-full">
+      <button
+        className="capitalize cursor-pointer outline-none w-full h-full"
+        type="button"
+      >
         {text}
       </button>
     </li>
